@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author lmichelson
+ *
+ */
 @RestController
 public class AtmController extends AbstractApiController {
 
@@ -25,6 +29,9 @@ public class AtmController extends AbstractApiController {
 	@Autowired
 	AtmAllocationService atmAllocService;
 
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/atm", method = RequestMethod.GET)
 	public List<AutomatedTellerMachine> atm() {
 		log.info("+---------------------------------------------+");
@@ -39,6 +46,9 @@ public class AtmController extends AbstractApiController {
 		return response;
 	}
 
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/allocation", method = RequestMethod.GET)
 	public List<AtmAllocation> allocation() {
 		log.info("+---------------------------------------------+");

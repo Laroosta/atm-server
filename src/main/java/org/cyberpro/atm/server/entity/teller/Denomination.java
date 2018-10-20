@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Entity
 public class Denomination implements Serializable {
 

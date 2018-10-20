@@ -1,5 +1,10 @@
 package org.cyberpro.atm.server.builder;
 
+/**
+ * @author lmichelson
+ *
+ * @param <T>
+ */
 public abstract class AbstractRequestBuilder<T> implements IRequestBuilder<T> {
 
 	protected String order;
@@ -9,6 +14,9 @@ public abstract class AbstractRequestBuilder<T> implements IRequestBuilder<T> {
 		return this;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getOrder() {
 		return order;
 	}

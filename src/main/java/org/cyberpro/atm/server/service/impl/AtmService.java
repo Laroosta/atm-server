@@ -11,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Service
 public class AtmService implements IAtmService {
 
@@ -19,6 +23,11 @@ public class AtmService implements IAtmService {
 	@Autowired
 	private AtmRepository repository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cyberpro.atm.server.service.IAtmService#getAll()
+	 */
 	public List<AutomatedTellerMachine> getAll() {
 		log.info("+---------------------------------------------+");
 		log.info("+ AtmService: Get list of all ATMs");

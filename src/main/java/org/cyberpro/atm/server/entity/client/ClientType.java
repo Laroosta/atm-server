@@ -6,6 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Entity
 public class ClientType implements Serializable {
 

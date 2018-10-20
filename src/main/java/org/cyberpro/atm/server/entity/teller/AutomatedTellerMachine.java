@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Entity
 @Table(name = "ATM")
 public class AutomatedTellerMachine implements Serializable {

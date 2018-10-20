@@ -11,6 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Service
 public class ClientService implements IClientService {
 
@@ -19,6 +23,11 @@ public class ClientService implements IClientService {
 	@Autowired
 	private ClientRepository repository;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cyberpro.atm.server.service.IClientService#getAll()
+	 */
 	public List<Client> getAll() {
 		log.info("+---------------------------------------------+");
 		log.info("+ Client: Get list of all Clients");
@@ -32,6 +41,12 @@ public class ClientService implements IClientService {
 		return list;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cyberpro.atm.server.service.IClientService#findByClientId(java.lang.
+	 * Integer)
+	 */
 	public Client findByClientId(Integer clientId) {
 		log.info("+---------------------------------------------+");
 		log.info("+ Found Client : " + clientId);

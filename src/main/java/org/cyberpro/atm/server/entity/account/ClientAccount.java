@@ -18,6 +18,10 @@ import javax.persistence.Transient;
 import org.cyberpro.atm.server.entity.client.Client;
 import org.cyberpro.atm.server.entity.currency.Currency;
 
+/**
+ * @author lmichelson
+ *
+ */
 @Entity
 public class ClientAccount implements Serializable {
 

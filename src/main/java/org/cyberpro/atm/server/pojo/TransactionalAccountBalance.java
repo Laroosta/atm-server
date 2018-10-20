@@ -3,6 +3,10 @@ package org.cyberpro.atm.server.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * @author lmichelson
+ *
+ */
 public class TransactionalAccountBalance implements Serializable {
 
 	/**
@@ -13,6 +17,11 @@ public class TransactionalAccountBalance implements Serializable {
 	private String accountType;
 	private BigDecimal accountBalance;
 
+	/**
+	 * @param accountNumber
+	 * @param accountType
+	 * @param accountBalance
+	 */
 	public TransactionalAccountBalance(String accountNumber, String accountType, BigDecimal accountBalance) {
 		this.accountNumber = accountNumber;
 		this.accountType = accountType;

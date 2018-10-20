@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author lmichelson
+ *
+ */
 @RestController
 public class ClientController extends AbstractApiController {
 
@@ -20,6 +24,9 @@ public class ClientController extends AbstractApiController {
 	@Autowired
 	ClientService clientService;
 
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/clients", method = RequestMethod.GET)
 	public List<Client> clients() {
 		log.info("+---------------------------------------------+");
@@ -34,6 +41,10 @@ public class ClientController extends AbstractApiController {
 		return response;
 	}
 
+	/**
+	 * @param clientId
+	 * @return
+	 */
 	@RequestMapping(value = "/client/{clientId}", method = RequestMethod.GET)
 	public Client client(@PathVariable("clientId") Integer clientId) {
 		log.info("+---------------------------------------------+");
