@@ -2,6 +2,9 @@ package org.cyberpro.atm.server.pojo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import org.cyberpro.atm.server.entity.account.ClientAccount;
 
 /**
  * @author lmichelson
@@ -14,10 +17,25 @@ public class CurrencyAccountBalance implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String accountNumber;
-	private String currency;
+	private String currencyCode;
 	private BigDecimal currencyBalance;
 	private BigDecimal conversionRate;
 	private BigDecimal zarAmount;
+
+	/**
+	 * @param accountNumber
+	 * @param currencyCode
+	 * @param currencyBalance
+	 * @param conversionRate
+	 * @param zarAmount
+	 */
+	public CurrencyAccountBalance(ClientAccount clientAccount, BigDecimal rate, BigDecimal zarAmount) {
+		this.accountNumber = clientAccount.getClientAccountNumber();
+		this.currencyCode = clientAccount.getCurrency().getCurrencyCode();
+		this.currencyBalance = clientAccount.getDisplayBalance();
+		this.conversionRate = rate;
+		this.zarAmount = zarAmount.setScale(2, RoundingMode.HALF_UP);
+	}
 
 	public String getAccountNumber() {
 		return accountNumber;
@@ -28,11 +46,11 @@ public class CurrencyAccountBalance implements Serializable {
 	}
 
 	public String getCurrency() {
-		return currency;
+		return currencyCode;
 	}
 
 	public void setCurrency(String currency) {
-		this.currency = currency;
+		this.currencyCode = currency;
 	}
 
 	public BigDecimal getCurrencyBalance() {

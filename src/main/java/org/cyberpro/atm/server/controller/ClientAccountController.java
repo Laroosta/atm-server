@@ -3,8 +3,10 @@ package org.cyberpro.atm.server.controller;
 import java.util.List;
 
 import org.cyberpro.atm.server.builder.account.ClientAccountRequestBuilder;
+import org.cyberpro.atm.server.builder.account.CurrencyAccountBalanceRequestBuilder;
 import org.cyberpro.atm.server.builder.account.TrxAccountBalanceRequestBuilder;
 import org.cyberpro.atm.server.entity.account.ClientAccount;
+import org.cyberpro.atm.server.pojo.CurrencyAccountBalance;
 import org.cyberpro.atm.server.pojo.TransactionalAccountBalance;
 import org.cyberpro.atm.server.service.impl.ClientAccountService;
 import org.slf4j.Logger;
@@ -89,12 +91,11 @@ public class ClientAccountController extends AbstractApiController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/atm/accounts", method = RequestMethod.GET)
-	public ResponseEntity<List<TransactionalAccountBalance>> atmAccounts(
-			@RequestParam(value = "clientId", required = true) Integer clientId,
+	@RequestMapping(value = "/atm/accounts/client/{clientId}/trx", method = RequestMethod.GET)
+	public ResponseEntity<List<TransactionalAccountBalance>> trxAccounts(@PathVariable("clientId") Integer clientId,
 			@RequestParam(value = "order", required = false) String orderBy) throws Exception {
 		log.info("+---------------------------------------------+");
-		log.info("+ atmAccounts()");
+		log.info("+ trxAccounts()");
 
 		TrxAccountBalanceRequestBuilder builder = new TrxAccountBalanceRequestBuilder(clientAccountService);
 		if (clientId != null) {
@@ -106,6 +107,38 @@ public class ClientAccountController extends AbstractApiController {
 		}
 
 		List<TransactionalAccountBalance> list = builder.send();
+
+		log.info("+---------------------------------------------+");
+
+		if (list.isEmpty()) {
+			throw new Exception("No accounts to display");
+		}
+
+		return ResponseEntity.ok().body(list);
+	}
+
+	/**
+	 * @param clientId
+	 * @param orderBy
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/atm/accounts/client/{clientId}/currency", method = RequestMethod.GET)
+	public ResponseEntity<List<CurrencyAccountBalance>> currencyAccounts(@PathVariable("clientId") Integer clientId,
+			@RequestParam(value = "order", required = false) String orderBy) throws Exception {
+		log.info("+---------------------------------------------+");
+		log.info("+ currencyAccounts()");
+
+		CurrencyAccountBalanceRequestBuilder builder = new CurrencyAccountBalanceRequestBuilder(clientAccountService);
+		if (clientId != null) {
+			builder.byClientId(clientId);
+		}
+
+		if (orderBy != null) {
+			builder.byOrder(orderBy);
+		}
+
+		List<CurrencyAccountBalance> list = builder.send();
 
 		log.info("+---------------------------------------------+");
 
