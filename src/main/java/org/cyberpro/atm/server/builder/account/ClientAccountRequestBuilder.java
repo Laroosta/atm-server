@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.cyberpro.atm.server.builder.AbstractRequestBuilder;
 import org.cyberpro.atm.server.entity.account.ClientAccount;
-import org.cyberpro.atm.server.service.ClientAccountService;
+import org.cyberpro.atm.server.service.impl.ClientAccountService;
 
 public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<ClientAccount>> {
 
@@ -28,7 +28,7 @@ public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<Cli
 			return invokeServiceByOrder(clientId);
 		}
 
-		return service.getAll();
+		return service.findAll();
 	}
 
 	private List<ClientAccount> invokeServiceByOrder(Integer clientId) {

@@ -1,10 +1,11 @@
-package org.cyberpro.atm.server.service;
+package org.cyberpro.atm.server.service.impl;
 
 import java.util.List;
 
 import org.cyberpro.atm.server.Application;
 import org.cyberpro.atm.server.entity.client.Client;
 import org.cyberpro.atm.server.repository.ClientRepository;
+import org.cyberpro.atm.server.service.IClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

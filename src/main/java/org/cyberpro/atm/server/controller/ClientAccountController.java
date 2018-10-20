@@ -3,8 +3,10 @@ package org.cyberpro.atm.server.controller;
 import java.util.List;
 
 import org.cyberpro.atm.server.builder.account.ClientAccountRequestBuilder;
+import org.cyberpro.atm.server.builder.account.TrxAccountBalanceRequestBuilder;
 import org.cyberpro.atm.server.entity.account.ClientAccount;
-import org.cyberpro.atm.server.service.ClientAccountService;
+import org.cyberpro.atm.server.pojo.TransactionalAccountBalance;
+import org.cyberpro.atm.server.service.impl.ClientAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author lmichelson
+ *
+ */
 @RestController
 public class ClientAccountController extends AbstractApiController {
 
@@ -23,13 +29,18 @@ public class ClientAccountController extends AbstractApiController {
 	@Autowired
 	ClientAccountService clientAccountService;
 
+	/**
+	 * @param clientId
+	 * @param orderBy
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
 	public ResponseEntity<List<ClientAccount>> accounts(
 			@RequestParam(value = "clientId", required = false) Integer clientId,
 			@RequestParam(value = "order", required = false) String orderBy) throws Exception {
 		log.info("+---------------------------------------------+");
 		log.info("+ accounts()");
-		log.info("+---------------------------------------------+");
 
 		ClientAccountRequestBuilder builder = new ClientAccountRequestBuilder(clientAccountService);
 		if (clientId != null) {
@@ -42,7 +53,6 @@ public class ClientAccountController extends AbstractApiController {
 
 		List<ClientAccount> list = builder.send();
 
-		log.info("+ Result Size" + list.size());
 		log.info("+---------------------------------------------+");
 
 		if (list.isEmpty()) {
@@ -52,11 +62,15 @@ public class ClientAccountController extends AbstractApiController {
 		return ResponseEntity.ok().body(list);
 	}
 
+	/**
+	 * @param accountNumber
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/account/{accountNumber}", method = RequestMethod.GET)
 	public ClientAccount account(@PathVariable("accountNumber") String accountNumber) throws Exception {
 		log.info("+---------------------------------------------+");
 		log.info("+ account(" + accountNumber + ")");
-		log.info("+---------------------------------------------+");
 
 		ClientAccount response = clientAccountService.findByAccountNumber(accountNumber);
 
@@ -64,10 +78,42 @@ public class ClientAccountController extends AbstractApiController {
 			throw new Exception("No accounts to display");
 		}
 
-		log.info("+ Found " + response.getClientAccountNumber());
 		log.info("+---------------------------------------------+");
 
 		return response;
+	}
+
+	/**
+	 * @param clientId
+	 * @param orderBy
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/atm/accounts", method = RequestMethod.GET)
+	public ResponseEntity<List<TransactionalAccountBalance>> atmAccounts(
+			@RequestParam(value = "clientId", required = true) Integer clientId,
+			@RequestParam(value = "order", required = false) String orderBy) throws Exception {
+		log.info("+---------------------------------------------+");
+		log.info("+ atmAccounts()");
+
+		TrxAccountBalanceRequestBuilder builder = new TrxAccountBalanceRequestBuilder(clientAccountService);
+		if (clientId != null) {
+			builder.byClientId(clientId);
+		}
+
+		if (orderBy != null) {
+			builder.byOrder(orderBy);
+		}
+
+		List<TransactionalAccountBalance> list = builder.send();
+
+		log.info("+---------------------------------------------+");
+
+		if (list.isEmpty()) {
+			throw new Exception("No accounts to display");
+		}
+
+		return ResponseEntity.ok().body(list);
 	}
 
 }

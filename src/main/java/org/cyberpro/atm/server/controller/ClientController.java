@@ -3,7 +3,7 @@ package org.cyberpro.atm.server.controller;
 import java.util.List;
 
 import org.cyberpro.atm.server.entity.client.Client;
-import org.cyberpro.atm.server.service.ClientService;
+import org.cyberpro.atm.server.service.impl.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
