@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,7 +25,7 @@ public class AtmController extends AbstractApiController {
 	@Autowired
 	AtmAllocationService atmAllocService;
 
-	@RequestMapping("/atm")
+	@RequestMapping(value = "/atm", method = RequestMethod.GET)
 	public List<AutomatedTellerMachine> atm() {
 		log.info("+---------------------------------------------+");
 		log.info("+ Calling ATM Resource");
@@ -38,7 +39,7 @@ public class AtmController extends AbstractApiController {
 		return response;
 	}
 
-	@RequestMapping("/allocation")
+	@RequestMapping(value = "/allocation", method = RequestMethod.GET)
 	public List<AtmAllocation> allocation() {
 		log.info("+---------------------------------------------+");
 		log.info("+ Calling ATM Allocation Resource");

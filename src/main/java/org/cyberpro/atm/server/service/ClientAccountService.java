@@ -46,10 +46,38 @@ public class ClientAccountService implements IClientAccountService {
 
 	public List<ClientAccount> findByClientId(Integer clientId) {
 		log.info("+---------------------------------------------+");
-		log.info("+ ClientAccount: ClientAccount by " + clientId);
+		log.info("+ ClientAccount: ClientAccount for client : " + clientId);
+		log.info("+---------------------------------------------+");
+
+		List<ClientAccount> list = repository.findByClient_ClientId(clientId);
+
+		log.info("+ Found : " + list.size());
+		log.info("+---------------------------------------------+");
+
+		return list;
+	}
+
+	public List<ClientAccount> findByClient_ClientIdOrderByDisplayBalanceDesc(Integer clientId) {
+		log.info("+---------------------------------------------+");
+		log.info("+ ClientAccount: ClientAccount for client : " + clientId);
+		log.info("+ Order Display Balance By: DESC : " + clientId);
 		log.info("+---------------------------------------------+");
 
 		List<ClientAccount> list = repository.findByClient_ClientIdOrderByDisplayBalanceDesc(clientId);
+
+		log.info("+ Found : " + list.size());
+		log.info("+---------------------------------------------+");
+
+		return list;
+	}
+
+	public List<ClientAccount> findByClient_ClientIdOrderByDisplayBalanceAsc(Integer clientId) {
+		log.info("+---------------------------------------------+");
+		log.info("+ ClientAccount: ClientAccount for client : " + clientId);
+		log.info("+ Order Display Balance By: ASC : " + clientId);
+		log.info("+---------------------------------------------+");
+
+		List<ClientAccount> list = repository.findByClient_ClientIdOrderByDisplayBalanceAsc(clientId);
 
 		log.info("+ Found : " + list.size());
 		log.info("+---------------------------------------------+");

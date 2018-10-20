@@ -14,4 +14,6 @@ public interface ClientAccountRepository extends CrudRepository<ClientAccount, L
 	List<ClientAccount> findByClient_ClientId(Integer clientId);
 
 	List<ClientAccount> findByClient_ClientIdOrderByDisplayBalanceDesc(Integer clientId);
+
+	List<ClientAccount> findByClient_ClientIdOrderByDisplayBalanceAsc(Integer clientId);
 }

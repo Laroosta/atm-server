@@ -2,14 +2,17 @@ package org.cyberpro.atm.server.controller;
 
 import java.util.List;
 
+import org.cyberpro.atm.server.builder.client.ClientAccountRequestBuilder;
 import org.cyberpro.atm.server.entity.client.ClientAccount;
 import org.cyberpro.atm.server.service.ClientAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,42 +24,47 @@ public class ClientAccountController extends AbstractApiController {
 	ClientAccountService clientAccountService;
 
 	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
-	public List<ClientAccount> accounts() {
+	public ResponseEntity<List<ClientAccount>> accounts(
+			@RequestParam(value = "clientId", required = false) Integer clientId,
+			@RequestParam(value = "order", required = false) String orderBy) throws Exception {
 		log.info("+---------------------------------------------+");
 		log.info("+ accounts()");
 		log.info("+---------------------------------------------+");
 
-		List<ClientAccount> response = clientAccountService.getAll();
+		ClientAccountRequestBuilder builder = new ClientAccountRequestBuilder(clientAccountService);
+		if (clientId != null) {
+			builder.byClientId(clientId);
+		}
 
-		log.info("+ Result Size" + response.size());
+		if (orderBy != null) {
+			builder.byOrder(orderBy);
+		}
+
+		List<ClientAccount> list = builder.send();
+
+		log.info("+ Result Size" + list.size());
 		log.info("+---------------------------------------------+");
 
-		return response;
+		if (list.isEmpty()) {
+			throw new Exception("No accounts to display");
+		}
+
+		return ResponseEntity.ok().body(list);
 	}
 
 	@RequestMapping(value = "/account/{accountNumber}", method = RequestMethod.GET)
-	public ClientAccount account(@PathVariable("accountNumber") String accountNumber) {
+	public ClientAccount account(@PathVariable("accountNumber") String accountNumber) throws Exception {
 		log.info("+---------------------------------------------+");
 		log.info("+ account(" + accountNumber + ")");
 		log.info("+---------------------------------------------+");
 
 		ClientAccount response = clientAccountService.findByAccountNumber(accountNumber);
 
+		if (response == null) {
+			throw new Exception("No accounts to display");
+		}
+
 		log.info("+ Found " + response.getClientAccountNumber());
-		log.info("+---------------------------------------------+");
-
-		return response;
-	}
-
-	@RequestMapping(value = "/accounts/client/{clientId}", method = RequestMethod.GET)
-	public List<ClientAccount> account(@PathVariable("clientId") Integer clientId) {
-		log.info("+---------------------------------------------+");
-		log.info("+ account(" + clientId + ")");
-		log.info("+---------------------------------------------+");
-
-		List<ClientAccount> response = clientAccountService.findByClientId(clientId);
-
-		log.info("+ Result Size" + response.size());
 		log.info("+---------------------------------------------+");
 
 		return response;
