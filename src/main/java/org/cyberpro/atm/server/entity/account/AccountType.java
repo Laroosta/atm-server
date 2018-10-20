@@ -1,4 +1,4 @@
-package org.cyberpro.atm.server.entity.client;
+package org.cyberpro.atm.server.entity.account;
 
 import java.io.Serializable;
 

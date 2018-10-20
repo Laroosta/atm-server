@@ -1,9 +1,9 @@
-package org.cyberpro.atm.server.builder.client;
+package org.cyberpro.atm.server.builder.account;
 
 import java.util.List;
 
 import org.cyberpro.atm.server.builder.AbstractRequestBuilder;
-import org.cyberpro.atm.server.entity.client.ClientAccount;
+import org.cyberpro.atm.server.entity.account.ClientAccount;
 import org.cyberpro.atm.server.service.ClientAccountService;
 
 public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<ClientAccount>> {

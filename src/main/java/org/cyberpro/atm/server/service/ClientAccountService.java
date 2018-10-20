@@ -3,7 +3,7 @@ package org.cyberpro.atm.server.service;
 import java.util.List;
 
 import org.cyberpro.atm.server.Application;
-import org.cyberpro.atm.server.entity.client.ClientAccount;
+import org.cyberpro.atm.server.entity.account.ClientAccount;
 import org.cyberpro.atm.server.repository.ClientAccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

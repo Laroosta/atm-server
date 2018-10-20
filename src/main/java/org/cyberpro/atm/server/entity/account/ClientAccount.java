@@ -1,4 +1,4 @@
-package org.cyberpro.atm.server.entity.client;
+package org.cyberpro.atm.server.entity.account;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import org.cyberpro.atm.server.entity.client.Client;
+import org.cyberpro.atm.server.entity.currency.Currency;
 
 @Entity
 public class ClientAccount implements Serializable {

@@ -2,8 +2,8 @@ package org.cyberpro.atm.server.controller;
 
 import java.util.List;
 
-import org.cyberpro.atm.server.builder.client.ClientAccountRequestBuilder;
-import org.cyberpro.atm.server.entity.client.ClientAccount;
+import org.cyberpro.atm.server.builder.account.ClientAccountRequestBuilder;
+import org.cyberpro.atm.server.entity.account.ClientAccount;
 import org.cyberpro.atm.server.service.ClientAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

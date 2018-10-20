@@ -1,4 +1,4 @@
-package org.cyberpro.atm.server.entity.client;
+package org.cyberpro.atm.server.entity.currency;
 
 import java.io.Serializable;
 
