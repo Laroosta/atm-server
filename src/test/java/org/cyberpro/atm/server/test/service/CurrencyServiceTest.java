@@ -20,14 +20,14 @@ public class CurrencyServiceTest {
 	}
 
 	@Test
-	public void currencyConverter_conversionindicatorDivide_shouldBeHundredAndFifty() throws Exception {
+	public void currencyConverter_conversionindicatorDivide_shouldBeFifteenThousand() throws Exception {
 		BigDecimal rateValue = new BigDecimal("0.1");
 		BigDecimal value = new BigDecimal("1500.00");
 		CurrencyConversionRate ccr = new CurrencyConversionRate();
 		ccr.setConversionIndicator("/");
 		ccr.setRate(rateValue);
 
-		assertEquals(currencyService.currencyConverter(value, ccr), new BigDecimal("150.000"));
+		assertEquals(currencyService.currencyConverter(value, ccr), new BigDecimal("15000.00"));
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class CurrencyServiceTest {
 		BigDecimal rateValue = new BigDecimal("2");
 		BigDecimal value = new BigDecimal("1500.00");
 		CurrencyConversionRate ccr = new CurrencyConversionRate();
-		ccr.setConversionIndicator("/");
+		ccr.setConversionIndicator("*");
 		ccr.setRate(rateValue);
 
 		assertEquals(currencyService.currencyConverter(value, ccr), new BigDecimal("3000.00"));
