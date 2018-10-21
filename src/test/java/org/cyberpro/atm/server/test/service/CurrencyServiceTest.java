@@ -27,7 +27,9 @@ public class CurrencyServiceTest {
 		ccr.setConversionIndicator("/");
 		ccr.setRate(rateValue);
 
-		assertEquals(currencyService.currencyConverter(value, ccr), new BigDecimal("15000.00"));
+		BigDecimal expected = new BigDecimal("15000.00");
+
+		assertEquals(expected, currencyService.currencyConverter(value, ccr));
 	}
 
 	@Test
@@ -38,7 +40,9 @@ public class CurrencyServiceTest {
 		ccr.setConversionIndicator("*");
 		ccr.setRate(rateValue);
 
-		assertEquals(currencyService.currencyConverter(value, ccr), new BigDecimal("3000.00"));
+		BigDecimal expected = new BigDecimal("3000.00");
+
+		assertEquals(expected, currencyService.currencyConverter(value, ccr));
 	}
 
 }

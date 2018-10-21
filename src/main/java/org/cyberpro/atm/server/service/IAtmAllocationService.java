@@ -13,4 +13,9 @@ public interface IAtmAllocationService {
 	 * @return
 	 */
 	public List<AtmAllocation> getAll();
+
+	/**
+	 * @return
+	 */
+	public List<AtmAllocation> findByAtm_AtmId(Integer atmId);
 }

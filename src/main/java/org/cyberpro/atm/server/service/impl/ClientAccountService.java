@@ -36,7 +36,7 @@ public class ClientAccountService implements IClientAccountService {
 	private CurrencyConversionRateRepository ccrRepository;
 
 	@Autowired
-	private CurrencyService currencyService;;
+	private CurrencyService currencyService;
 
 	/*
 	 * (non-Javadoc)
@@ -254,6 +254,10 @@ public class ClientAccountService implements IClientAccountService {
 
 		return result.get();
 
+	}
+
+	public ClientAccount save(ClientAccount clientAccount) {
+		return repository.save(clientAccount);
 	}
 
 }

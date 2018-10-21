@@ -32,15 +32,13 @@ public class AtmController extends AbstractApiController {
 	/**
 	 * @return
 	 */
-	@RequestMapping(value = "/atm", method = RequestMethod.GET)
+	@RequestMapping(value = "/server/atm", method = RequestMethod.GET)
 	public List<AutomatedTellerMachine> atm() {
 		log.info("+---------------------------------------------+");
 		log.info("+ Calling ATM Resource");
-		log.info("+---------------------------------------------+");
 
 		List<AutomatedTellerMachine> response = atmService.getAll();
 
-		log.info("+ Result Size" + response.size());
 		log.info("+---------------------------------------------+");
 
 		return response;
@@ -49,15 +47,13 @@ public class AtmController extends AbstractApiController {
 	/**
 	 * @return
 	 */
-	@RequestMapping(value = "/allocation", method = RequestMethod.GET)
+	@RequestMapping(value = "/server/allocation", method = RequestMethod.GET)
 	public List<AtmAllocation> allocation() {
 		log.info("+---------------------------------------------+");
 		log.info("+ Calling ATM Allocation Resource");
-		log.info("+---------------------------------------------+");
 
 		List<AtmAllocation> response = atmAllocService.getAll();
 
-		log.info("+ Result Size" + response.size());
 		log.info("+---------------------------------------------+");
 
 		return response;

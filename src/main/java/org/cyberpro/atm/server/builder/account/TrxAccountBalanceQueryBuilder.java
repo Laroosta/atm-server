@@ -2,7 +2,7 @@ package org.cyberpro.atm.server.builder.account;
 
 import java.util.List;
 
-import org.cyberpro.atm.server.builder.AbstractRequestBuilder;
+import org.cyberpro.atm.server.builder.AbstractQueryBuilder;
 import org.cyberpro.atm.server.pojo.TransactionalAccountBalance;
 import org.cyberpro.atm.server.service.impl.ClientAccountService;
 
@@ -10,7 +10,7 @@ import org.cyberpro.atm.server.service.impl.ClientAccountService;
  * @author lmichelson
  *
  */
-public class TrxAccountBalanceRequestBuilder extends AbstractRequestBuilder<List<TransactionalAccountBalance>> {
+public class TrxAccountBalanceQueryBuilder extends AbstractQueryBuilder<TransactionalAccountBalance> {
 
 	ClientAccountService service;
 
@@ -19,7 +19,7 @@ public class TrxAccountBalanceRequestBuilder extends AbstractRequestBuilder<List
 	/**
 	 * @param service
 	 */
-	public TrxAccountBalanceRequestBuilder(ClientAccountService service) {
+	public TrxAccountBalanceQueryBuilder(ClientAccountService service) {
 		this.service = service;
 	}
 
@@ -27,7 +27,7 @@ public class TrxAccountBalanceRequestBuilder extends AbstractRequestBuilder<List
 	 * @param clientId
 	 * @return
 	 */
-	public TrxAccountBalanceRequestBuilder byClientId(Integer clientId) {
+	public TrxAccountBalanceQueryBuilder byClientId(Integer clientId) {
 		this.clientId = clientId;
 		return this;
 	}
@@ -38,7 +38,7 @@ public class TrxAccountBalanceRequestBuilder extends AbstractRequestBuilder<List
 	 * @see org.cyberpro.atm.server.builder.IRequestBuilder#send()
 	 */
 	@Override
-	public List<TransactionalAccountBalance> send() {
+	public List<TransactionalAccountBalance> findAll() {
 		return invokeServiceByOrder(clientId);
 	}
 

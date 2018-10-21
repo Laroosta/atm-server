@@ -48,6 +48,10 @@ public class ClientAccount implements Serializable {
 
 	private BigDecimal displayBalance;
 
+	@OneToOne
+	@JoinColumn(name = "CLIENT_ACCOUNT_NUMBER")
+	private CreditCardLimit creditCardLimit;
+
 	@Transient
 	private String formattedDisplayBalance;
 
@@ -104,6 +108,14 @@ public class ClientAccount implements Serializable {
 	@Access(AccessType.PROPERTY)
 	public String getFormattedDisplayBalance() {
 		return this.formattedDisplayBalance;
+	}
+
+	public CreditCardLimit getCreditCardLimit() {
+		return creditCardLimit;
+	}
+
+	public void setCreditCardLimit(CreditCardLimit creditCardLimit) {
+		this.creditCardLimit = creditCardLimit;
 	}
 
 }

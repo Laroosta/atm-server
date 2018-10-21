@@ -25,35 +25,35 @@ public class ClientController extends AbstractApiController {
 	ClientService clientService;
 
 	/**
+	 * Finds all clients
+	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/clients", method = RequestMethod.GET)
+	@RequestMapping(value = "/server/clients", method = RequestMethod.GET)
 	public List<Client> clients() {
 		log.info("+---------------------------------------------+");
 		log.info("+ clients()");
-		log.info("+---------------------------------------------+");
 
 		List<Client> response = clientService.getAll();
 
-		log.info("+ Result Size" + response.size());
 		log.info("+---------------------------------------------+");
 
 		return response;
 	}
 
 	/**
+	 * Finds a client by its clientId
+	 * 
 	 * @param clientId
 	 * @return
 	 */
-	@RequestMapping(value = "/client/{clientId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/server/client/{clientId}", method = RequestMethod.GET)
 	public Client client(@PathVariable("clientId") Integer clientId) {
 		log.info("+---------------------------------------------+");
 		log.info("+ client(" + clientId + ")");
-		log.info("+---------------------------------------------+");
 
 		Client response = clientService.findByClientId(clientId);
 
-		log.info("+ Found " + response.getClientId());
 		log.info("+---------------------------------------------+");
 
 		return response;

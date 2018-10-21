@@ -1,21 +1,23 @@
 package org.cyberpro.atm.server.builder;
 
+import java.util.List;
+
 /**
  * @author lmichelson
  *
  * @param <T>
  */
-public interface IRequestBuilder<T> {
+public interface IQueryBuilder<T> {
 
 	/**
 	 * @param order
 	 * @return
 	 */
-	public AbstractRequestBuilder<T> byOrder(String order);
+	public AbstractQueryBuilder<T> byOrder(String order);
 
 	/**
 	 * @return
 	 */
-	public T send();
+	public List<T> findAll();
 
 }

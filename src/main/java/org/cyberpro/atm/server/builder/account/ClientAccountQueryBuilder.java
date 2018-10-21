@@ -2,7 +2,7 @@ package org.cyberpro.atm.server.builder.account;
 
 import java.util.List;
 
-import org.cyberpro.atm.server.builder.AbstractRequestBuilder;
+import org.cyberpro.atm.server.builder.AbstractQueryBuilder;
 import org.cyberpro.atm.server.entity.account.ClientAccount;
 import org.cyberpro.atm.server.service.impl.ClientAccountService;
 
@@ -10,16 +10,18 @@ import org.cyberpro.atm.server.service.impl.ClientAccountService;
  * @author lmichelson
  *
  */
-public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<ClientAccount>> {
+public class ClientAccountQueryBuilder extends AbstractQueryBuilder<ClientAccount> {
 
 	ClientAccountService service;
 
 	private Integer clientId;
 
+	private String accountNumber;
+
 	/**
 	 * @param service
 	 */
-	public ClientAccountRequestBuilder(ClientAccountService service) {
+	public ClientAccountQueryBuilder(ClientAccountService service) {
 		this.service = service;
 	}
 
@@ -27,9 +29,18 @@ public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<Cli
 	 * @param clientId
 	 * @return
 	 */
-	public ClientAccountRequestBuilder byClientId(Integer clientId) {
+	public ClientAccountQueryBuilder byClientId(Integer clientId) {
 		this.clientId = clientId;
 		return this;
+	}
+
+	/**
+	 * @param accountNumber
+	 * @return
+	 */
+	public ClientAccount byAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+		return service.findByAccountNumber(this.accountNumber);
 	}
 
 	/*
@@ -38,7 +49,7 @@ public class ClientAccountRequestBuilder extends AbstractRequestBuilder<List<Cli
 	 * @see org.cyberpro.atm.server.builder.IRequestBuilder#send()
 	 */
 	@Override
-	public List<ClientAccount> send() {
+	public List<ClientAccount> findAll() {
 
 		if (this.clientId != null) {
 			return invokeServiceByOrder(clientId);

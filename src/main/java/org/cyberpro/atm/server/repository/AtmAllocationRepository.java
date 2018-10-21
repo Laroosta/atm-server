@@ -18,4 +18,6 @@ public interface AtmAllocationRepository extends CrudRepository<AtmAllocation, L
 	 */
 	List<AtmAllocation> findAll();
 
+	List<AtmAllocation> findByAtm_AtmId(Integer atmId);
+
 }

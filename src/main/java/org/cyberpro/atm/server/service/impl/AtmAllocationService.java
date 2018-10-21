@@ -31,9 +31,22 @@ public class AtmAllocationService implements IAtmAllocationService {
 	public List<AtmAllocation> getAll() {
 		log.info("+---------------------------------------------+");
 		log.info("+ AtmAllocationService: Get list of all ATMs");
-		log.info("+---------------------------------------------+");
 
 		List<AtmAllocation> list = repository.findAll();
+
+		return list;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.cyberpro.atm.server.service.IAtmAllocationService#getAll()
+	 */
+	public List<AtmAllocation> findByAtm_AtmId(Integer atmId) {
+		log.info("+---------------------------------------------+");
+		log.info("+ AtmAllocationService: Get list of all ATMs");
+
+		List<AtmAllocation> list = repository.findByAtm_AtmId(atmId);
 
 		return list;
 	}
