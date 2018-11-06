@@ -25,7 +25,7 @@ public class WithdrawalTrxServiceIntegrationTest {
 	WithdrawalTrxService withdrawalTrxServiceTest;
 
 	@Test
-	public void test() throws Exception {
+	public void makeWithdrawal_nineHundredRandFromClient1_shouldBePersistedToDatabase() throws Exception {
 		final String accountNumber = "4067342946";
 
 		WithdrawRequest wr = new WithdrawRequest();
